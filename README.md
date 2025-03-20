@@ -4,6 +4,7 @@ Adicionar arquivos na pasta src/Mailer/Transport
 cd src
 mkdir Mailer
 git clone git@bitbucket.org:wab-ninjas/wmailer-transport.git Transport
+rm -rf Transport/.git
 ````
 
 Adicionar em config/services.yaml
