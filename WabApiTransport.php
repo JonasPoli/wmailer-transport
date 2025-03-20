@@ -35,7 +35,7 @@ final class WabApiTransport extends AbstractApiTransport
 
     protected function doSendApi(SentMessage $sentMessage, Email $email, Envelope $envelope): ResponseInterface
     {
-        $response = $this->client->request('POST', 'https://'.$this->getEndpoint().'/v2/send', [
+        $response = $this->client->request('POST', 'https://'.$this->getEndpoint().'/v1/send', [
             'json' => $this->getPayload($email, $envelope),
         ]);
 
@@ -52,7 +52,7 @@ final class WabApiTransport extends AbstractApiTransport
             throw new HttpTransportException('Unable to send an email: '.$result['message'].\sprintf(' (code %d).', $statusCode), $response);
         }
 
-        $sentMessage->setMessageId($result['message_id']);
+        //$sentMessage->setMessageId($result['message_id']);
 
         return $response;
     }

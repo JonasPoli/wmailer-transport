@@ -1,11 +1,12 @@
-Adicionar arquivos em na pasta src/Mailer/Transport
+Adicionar arquivos na pasta src/Mailer/Transport
 
-Adicionar em config/packages/mailer.yaml
+Adicionar em config/services.yaml
 
 
 ```
-	mailer:
-		transport_factory: 'App\Mailer\Transport\WabTransportFactory'
+services:	
+	App\Mailer\Transport\WabTransportFactory:
+        tags: ['mailer.transport_factory']
 ````
 
 Adicionar em .env.local
