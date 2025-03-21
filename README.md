@@ -1,10 +1,10 @@
+**versão 1.0**
+
 Adicionar arquivos na pasta src/Mailer/Transport
 
 ````
-cd src
-mkdir Mailer
-git clone git@bitbucket.org:wab-ninjas/wmailer-transport.git Transport
-rm -rf Transport/.git
+git clone git@bitbucket.org:wab-ninjas/wmailer-transport.git src/Mailer/Transport
+rm -rf ./src/Mailer/Transport/.git
 ````
 
 Adicionar em config/services.yaml
