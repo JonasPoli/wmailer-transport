@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Mailer\Transport;
+namespace WabNinjas\WmailerTransport\Mailer\Transport;
 
 use Symfony\Component\Mailer\Exception\UnsupportedSchemeException;
 use Symfony\Component\Mailer\Transport\AbstractTransportFactory;
