@@ -1,3 +1,4 @@
 services:
     WabNinjas\WmailerTransport\Mailer\Transport\WabTransportFactory:
+        arguments: ['@twig', '@http_client', '@event_dispatcher', '@logger']
         tags: ['mailer.transport_factory']
