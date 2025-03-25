@@ -1,15 +1,25 @@
 {
-    "name": "wab-ninjas/wmailer-transport",
-    "type": "symfony-bundle",
-    "description": "Mailer Transport personalizado para Symfony usando API WAB",
-    "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "WabNinjas\\WmailerTransport\\": "src/"
-        }
-    },
-    "require": {
-        "php": "^8.1 || ^8.2 || ^8.3",
-        "symfony/mailer": "^6.4 || ^7.0 || ^7.1"
+  "name": "wab-ninjas/wmailer-transport",
+  "type": "symfony-bundle",
+  "description": "Mailer Transport personalizado para Symfony usando API WAB",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "WabNinjas\\WmailerTransport\\": "src/"
     }
+  },
+  "require": {
+    "php": "^8.1 || ^8.2 || ^8.3",
+    "symfony/mailer": "^6.4 || ^7.0 || ^7.1"
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "@php -r \"file_put_contents('.env', '\\n### Para o wMailer:\\nMAILER_DSN=wmailer+api://APIKEY@default\\n', FILE_APPEND);\"",
+      "@php -r \"echo '\\n\\033[0;32m[IMPORTANTE]\\033[0m Adicione ao seu arquivo .env.local:\\nMAILER_DSN=wmailer+api://APIKEY@default\\n\\n';\""
+    ],
+    "post-update-cmd": [
+      "@php -r \"file_put_contents('.env', '\\n### Para o wMailer:\\nMAILER_DSN=wmailer+api://APIKEY@default\\n', FILE_APPEND);\"",
+      "@php -r \"echo '\\n\\033[0;32m[IMPORTANTE]\\033[0m Adicione ao seu arquivo .env.local:\\nMAILER_DSN=wmailer+api://APIKEY@default\\n\\n';\""
+    ]
+  }
 }
