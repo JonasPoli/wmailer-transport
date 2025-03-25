@@ -1,0 +1,20 @@
+{
+    "name": "wab-ninjas/wmailer-transport",
+    "type": "symfony-bundle",
+    "description": "Mailer Transport personalizado para Symfony usando API WAB",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "WabNinjas\\WmailerTransport\\": "src/"
+        }
+    },
+    "require": {
+        "php": "^8.1 || ^8.2 || ^8.3",
+        "symfony/mailer": "^6.4 || ^7.0 || ^7.1"
+    },
+    "extra": {
+        "symfony": {
+            "allow-contrib": true
+        }
+    }
+}

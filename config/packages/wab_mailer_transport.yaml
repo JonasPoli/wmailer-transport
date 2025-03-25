@@ -1,0 +1,3 @@
+services:
+    wab-ninjas\WabMailerTransport\Mailer\Transport\WabTransportFactory:
+        tags: ['mailer.transport_factory']
