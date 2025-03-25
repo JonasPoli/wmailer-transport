@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Mailer\Transport;
+namespace WabNinjas\WmailerTransport\Mailer\Transport;
 
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Log\LoggerInterface;
