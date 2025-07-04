@@ -73,6 +73,7 @@ final class WabApiTransport extends AbstractApiTransport
             'nameFrom' => $envelope->getSender()->getName(),
             'mailTo' => array_map(fn ($address) => $address->getAddress(), $this->getRecipients($email, $envelope)),
             'subject' => $email->getSubject(),
+            'bcc'=>$email->getBcc(),
         ];
         if ($email->getHtmlBody()) {
             $payload['body'] = $email->getHtmlBody();
