@@ -3,7 +3,7 @@
 Adicionar arquivos na pasta src/Mailer/Transport
 
 ````
-git clone git@bitbucket.org:wab-ninjas/wmailer-transport.git src/Mailer/Transport
+git clone https://github.com/JonasPoli/wmailer-transport.git src/Mailer/Transport
 rm -rf ./src/Mailer/Transport/.git
 ````
 
