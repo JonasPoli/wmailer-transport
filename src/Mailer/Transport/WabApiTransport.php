@@ -8,6 +8,7 @@ use Symfony\Component\Mailer\Envelope;
 use Symfony\Component\Mailer\Exception\HttpTransportException;
 use Symfony\Component\Mailer\SentMessage;
 use Symfony\Component\Mailer\Transport\AbstractApiTransport;
+use Symfony\Component\Mime\Address;
 use Symfony\Component\Mime\Email;
 use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
@@ -67,13 +68,18 @@ final class WabApiTransport extends AbstractApiTransport
 
     private function getPayload(Email $email, Envelope $envelope): array
     {
+        $addresses = static fn (array $list): array => array_values(array_unique(array_map(static fn (Address $address) => $address->getAddress(), $list)));
+
+        // getRecipients() tira Cc e Bcc do envelope. A API não tem campo de Cc: quem está em Cc vai junto com o Para,
+        // senão some sem aviso. O Bcc vai como lista de endereços; como objeto Address virava {} no JSON e a API
+        // recusava o envio inteiro.
         $payload = [
             'key' => $this->apiToken,
             'mailFrom' => $envelope->getSender()->getAddress(),
             'nameFrom' => $envelope->getSender()->getName(),
-            'mailTo' => array_map(fn ($address) => $address->getAddress(), $this->getRecipients($email, $envelope)),
+            'mailTo' => $addresses([...$this->getRecipients($email, $envelope), ...$email->getCc()]),
             'subject' => $email->getSubject(),
-            'bcc'=>$email->getBcc(),
+            'bcc' => $addresses($email->getBcc()),
         ];
         if ($email->getHtmlBody()) {
             $payload['body'] = $email->getHtmlBody();
