@@ -81,6 +81,10 @@ final class WabApiTransport extends AbstractApiTransport
             'subject' => $email->getSubject(),
             'bcc' => $addresses($email->getBcc()),
         ];
+        // Sem replyTo, o "Responder" de quem recebe vai para o remetente (normalmente um no-reply).
+        if ($replyTo = $addresses($email->getReplyTo())) {
+            $payload['replyTo'] = $replyTo;
+        }
         if ($email->getHtmlBody()) {
             $payload['body'] = $email->getHtmlBody();
         } elseif ($email->getTextBody()) {
